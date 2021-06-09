@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Yeah
+<a href="emp/empList">직원정보 리스트</a>
 </body>
 </html>
