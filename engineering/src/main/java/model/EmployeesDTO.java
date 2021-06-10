@@ -1,22 +1,17 @@
-package command;
+package model;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-public class EmployeesCommand {
+public class EmployeesDTO {
 	Long empNo;
 	String empId;
 	String empPw;
-	String empPwCon;
 	String empName;
 	String empDeptName;
 	String empEmail;
 	String empPhoneNumber;
-	@DateTimeFormat(pattern="yyyy-mm-dd")
 	Date hireDate;
 	Long salary;
-	
 	public Long getEmpNo() {
 		return empNo;
 	}
@@ -34,12 +29,6 @@ public class EmployeesCommand {
 	}
 	public void setEmpPw(String empPw) {
 		this.empPw = empPw;
-	}
-	public String getEmpPwCon() {
-		return empPwCon;
-	}
-	public void setEmpPwCon(String empPwCon) {
-		this.empPwCon = empPwCon;
 	}
 	public String getEmpName() {
 		return empName;
@@ -76,13 +65,5 @@ public class EmployeesCommand {
 	}
 	public void setSalary(Long salary) {
 		this.salary = salary;
-	}
-	public boolean isEmpPwEqualsEmpPwCon() {
-		if(empPw.equals(empPwCon)) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 }

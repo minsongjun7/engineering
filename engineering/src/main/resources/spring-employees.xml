@@ -5,4 +5,8 @@
              http://www.springframework.org/schema/beans 
              http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean class="controller.employees.EmployeesController"/>
+	<bean id="employeesService" class="service.employees.EmployeesService"/>
+	<bean id="employeesRepository" class="repository.EmployeesRepository"/>
+	<bean id="employeesNoService" class="service.employees.EmployeesNoService"/>
+	<bean id="employeesListService" class="service.employees.EmployeesListService"/>
 </beans>
