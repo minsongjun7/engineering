@@ -12,7 +12,10 @@
 <table border = 1>
 	<tr><td>사원번호</td><td>이름</td><td>부서명</td><td>이메일</td><td>전화번호</td></tr>
 	<c:forEach items="${empList}" var="dto">
-	<tr><td>${dto.empNo}</td><td>${dto.empName}</td><td>${dto.empDeptName}</td><td>${dto.empEmail}</td><td>${dto.empPhoneNumber}</td></tr>
+	<tr>
+		<td>${dto.empNo}</td><td>${dto.empName}</td><td>${dto.empDeptName}</td>
+		<td>${dto.empEmail}</td><td>${dto.empPhoneNumber}</td>
+	</tr>
 	</c:forEach>
 </table>
 <a href="empRegister">직원등록</a>
