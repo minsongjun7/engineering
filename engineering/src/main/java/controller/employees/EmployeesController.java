@@ -46,7 +46,9 @@ public class EmployeesController {
 		return "employees/employeesInfo";
 	}
 	@RequestMapping("empModify")
-	public String empModify() {
+	public String empModify(
+			@RequestParam(value="empNo") String empNo, Model model) {
+		employeesInfoService.empInfo(empNo, model);
 		return "employees/employeesModify";
 	}
 }
