@@ -43,7 +43,7 @@
 		</td></tr>
 	<tr><td>입사일</td>
 		<td>
-			<input type="text" name="hireDate" placeholder="yyyy-mm-dd">
+			<input type="text" name="hireDate" placeholder="yyyy-MM-dd">
 		</td></tr>
 	<tr><td>급여</td>
 		<td>
