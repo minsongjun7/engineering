@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeesCommand;
+import service.employees.EmployeesDeleteService;
 import service.employees.EmployeesInfoService;
 import service.employees.EmployeesListService;
 import service.employees.EmployeesModifyService;
@@ -26,6 +28,8 @@ public class EmployeesController {
 	EmployeesInfoService employeesInfoService;
 	@Autowired
 	EmployeesModifyService employeesModifyService;
+	@Autowired
+	EmployeesDeleteService employeesDeleteService;
 	
 	@RequestMapping("empList")
 	public String empList(Model model) {
@@ -58,5 +62,11 @@ public class EmployeesController {
 	public String empModifyOk(EmployeesCommand employeesCommand) {
 		employeesModifyService.empModify(employeesCommand);
 		return "redirect:empInfo?empNo="+employeesCommand.getEmpNo();
+	}
+	@RequestMapping("empDelete")
+	public String empDelete(
+			@RequestParam(value="empNo") String empNo) {
+		employeesDeleteService.empDelete(empNo);
+		return "redirect:empList";
 	}
 }

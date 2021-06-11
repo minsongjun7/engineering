@@ -39,8 +39,9 @@
 			<input type="text" name="salary" value="${emp.salary}">
 		</td></tr>
 	<tr><td colspan=2 align="center">
-		<input type="submit" value="직원수정 완료">
-		<input type="button" value="직원 삭제">
+		<input type="submit" value="직원수정 완료"/>
+		<input type="button" value="직원 삭제"
+			onclick="javascript:location.href='empDelete?empNo=${emp.empNo}';"/>
 	</td></tr>
 </table>
 </form>

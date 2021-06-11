@@ -1,5 +1,7 @@
 package service.employees;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import command.EmployeesCommand;
 import model.EmployeesDTO;
 import repository.EmployeesRepository;
