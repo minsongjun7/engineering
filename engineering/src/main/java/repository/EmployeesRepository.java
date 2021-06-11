@@ -15,6 +15,7 @@ public class EmployeesRepository {
 	
 	public void empUpdate(EmployeesDTO dto) {
 		statement = namespace + ".employeesUpdate";
+		sqlSession.update(statement, dto);
 	}
 	public void insertEmployees(EmployeesDTO dto) {
 		statement = namespace + ".employeesInsert";
