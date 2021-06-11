@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import command.EmployeesCommand;
 import service.employees.EmployeesInfoService;
 import service.employees.EmployeesListService;
+import service.employees.EmployeesModifyService;
 import service.employees.EmployeesNoService;
 import service.employees.EmployeesService;
 
@@ -23,6 +24,8 @@ public class EmployeesController {
 	EmployeesListService employeesListService;
 	@Autowired
 	EmployeesInfoService employeesInfoService;
+	@Autowired
+	EmployeesModifyService employeesModifyService;
 	
 	@RequestMapping("empList")
 	public String empList(Model model) {
@@ -53,7 +56,7 @@ public class EmployeesController {
 	}
 	@RequestMapping("empModifyOk")
 	public String empModifyOk(EmployeesCommand employeesCommand) {
-		
+		employeesModifyService.empModify(employeesCommand);
 		return "redirect:empInfo?empNo="+employeesCommand.getEmpNo();
 	}
 }

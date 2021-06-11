@@ -12,6 +12,10 @@ public class EmployeesRepository {
 	SqlSession sqlSession;
 	private final String namespace = "mappers.employeesMapper";
 	private String statement;
+	
+	public void empUpdate(EmployeesDTO dto) {
+		statement = namespace + ".employeesUpdate";
+	}
 	public void insertEmployees(EmployeesDTO dto) {
 		statement = namespace + ".employeesInsert";
 		sqlSession.insert(statement, dto);

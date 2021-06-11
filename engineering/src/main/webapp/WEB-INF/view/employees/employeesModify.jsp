@@ -15,10 +15,6 @@
 		<td width="370">${emp.empNo}</td></tr>
 	<tr><td>아이디</td>
 		<td>${emp.empId}</td></tr>
-	<tr><td>비밀번호</td>
-		<td>
-			<input type="password" name="empPw">
-		</td></tr>
 	<tr><td>이름</td>
 		<td>${emp.empName}</td></tr>
 	<tr><td>부서명</td>

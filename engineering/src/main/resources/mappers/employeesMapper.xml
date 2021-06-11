@@ -10,6 +10,13 @@ EMP_NO, EMP_ID, EMP_PW, EMP_NAME, EMP_DEPT_NAME, EMP_EMAIL, EMP_PHONE_NUMBER, HI
 	EMP_NO empNo, EMP_ID empId, EMP_PW empPw, EMP_NAME empName, EMP_DEPT_NAME empDeptName,
 		EMP_EMAIL empEmail, EMP_PHONE_NUMBER empPhoneNumber, HIRE_DATE hireDate, SALARY salary
 </sql>
+<update id="employeesUpdate" parameterType="emp">
+	update employees
+	set emp_dept_name = #{empDeptName}, emp_email = #{empEmail},
+			emp_phone_number = #{empPhoneNumber}, hire_date = #{hireDate},
+			salary = #{salary}
+	where emp_no = #{empNo}
+</update>
 <insert id="employeesInsert" parameterType="emp">
 	insert into employees(<include refid="baseColumn"/>)
 	values(#{empNo},#{empId},#{empPw},#{empName},#{empDeptName},#{empEmail},#{empPhoneNumber},
