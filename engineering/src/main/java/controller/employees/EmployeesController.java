@@ -51,4 +51,9 @@ public class EmployeesController {
 		employeesInfoService.empInfo(empNo, model);
 		return "employees/employeesModify";
 	}
+	@RequestMapping("empModifyOk")
+	public String empModifyOk(EmployeesCommand employeesCommand) {
+		
+		return "redirect:empInfo?empNo="+employeesCommand.getEmpNo();
+	}
 }

@@ -9,6 +9,7 @@
 </head>
 <body>
 <form action="empModifyOk" method="post" name="frm">
+<input type="hidden" name="empNo" value="${emp.empNo}">
 <table border="1" width="500" align="center">
 	<tr><td width="130">직원번호</td>
 		<td width="370">${emp.empNo}</td></tr>
@@ -23,7 +24,9 @@
 	<tr><td>부서명</td>
 		<td><input type="text" name="empDeptName" value="${emp.empDeptName}"></td></tr>
 	<tr><td>이메일</td>
-		<td><input type="text" name="empEmail" value="${emp.empEmail}"></td></tr>
+		<td>
+			<input type="text" name="empEmail" value="${emp.empEmail}">
+		</td></tr>
 	<tr><td>연락처</td>
 		<td>
 			<input type="text" name="empPhoneNumber" placeholder="010-1234-5678"
@@ -32,11 +35,12 @@
 	<tr><td>입사일</td>
 		<td>
 			<input type="text" name="hireDate" placeholder="yyyy-MM-dd"
-				value="${emp.hireDate}">
+				value="<fmt:formatDate value="${emp.hireDate}" type="date"
+				pattern='yyyy-MM-dd'/>">
 		</td></tr>
 	<tr><td>급여</td>
 		<td>
-			<input type="text" name="salary">
+			<input type="text" name="salary" value="${emp.salary}">
 		</td></tr>
 	<tr><td colspan=2 align="center">
 		<input type="submit" value="직원수정 완료">
