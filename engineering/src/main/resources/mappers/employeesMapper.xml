@@ -37,5 +37,6 @@ EMP_NO, EMP_ID, EMP_PW, EMP_NAME, EMP_DEPT_NAME, EMP_EMAIL, EMP_PHONE_NUMBER, HI
 <select id="empAllList" resultType="emp">
 	select <include refid="selectColumn"/>
 	from employees
+	order by emp_no
 </select>
 </mapper>
