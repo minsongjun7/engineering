@@ -13,7 +13,7 @@ public class EmployeesCommand {
 	String empDeptName;
 	String empEmail;
 	String empPhoneNumber;
-	@DateTimeFormat(pattern="yyyy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date hireDate;
 	Long salary;
 	

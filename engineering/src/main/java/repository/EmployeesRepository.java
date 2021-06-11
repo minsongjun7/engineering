@@ -16,6 +16,10 @@ public class EmployeesRepository {
 		statement = namespace + ".employeesInsert";
 		sqlSession.insert(statement, dto);
 	}
+	public EmployeesDTO empInfo(String empNo) {
+		statement = namespace + ".empInfo";
+		return sqlSession.selectOne(statement, empNo);
+	}
 	public int getEmpNo() {
 		statement = namespace + ".empNo";
 		return sqlSession.selectOne(statement);
