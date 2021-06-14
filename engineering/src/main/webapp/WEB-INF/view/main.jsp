@@ -22,7 +22,7 @@
 	</td></tr>
 <tr><td colspan="3">
 		아이디/비밀번호 찾기 | 
-		<a href="#">회원가입</a>
+		<a href="member/agree">회원가입</a>
 	</td></tr>
 </table>
 
