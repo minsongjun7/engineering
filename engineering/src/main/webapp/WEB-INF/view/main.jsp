@@ -27,7 +27,8 @@
 </table>
 
 <!-- 관리자 로그인 -->
-<a href="emp/empList">직원정보 리스트</a>
+<a href="emp/empList">직원정보 리스트</a><br/>
+<a href="member/memberList">회원정보 리스트</a>
 
 <!-- 일반직원 로그인 -->
 

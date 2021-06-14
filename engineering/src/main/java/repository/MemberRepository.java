@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +13,10 @@ public class MemberRepository {
 	private final String namespace = "mappers.memberMapper";
 	private String statement;
 	
+	public List<MemberDTO> memberList() {
+		statement = namespace + ".memberList";
+		return sqlSession.selectList(statement);
+	}
 	public void memberInsert(MemberDTO dto) {
 		statement = namespace + ".memberInsert";
 		sqlSession.insert(statement,dto);

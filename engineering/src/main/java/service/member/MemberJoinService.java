@@ -26,5 +26,6 @@ public class MemberJoinService {
 		dto.setMembPhoneNumber(memberCommand.getMembPhoneNumber());
 		dto.setMembPw(bCryptPasswordEncoder.encode(memberCommand.getMembPw()));
 		dto.setPostNumber(memberCommand.getPostNumber());
+		memberRepository.memberInsert(dto);
 	}
 }
