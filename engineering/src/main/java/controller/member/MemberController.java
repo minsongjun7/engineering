@@ -11,6 +11,7 @@ import command.MemberCommand;
 import service.member.MemberInfoService;
 import service.member.MemberJoinService;
 import service.member.MemberListService;
+import service.member.MemberModifyService;
 
 @Controller
 @RequestMapping("member")
@@ -21,6 +22,8 @@ public class MemberController {
 	MemberListService memberListService;
 	@Autowired
 	MemberInfoService memberInfoService;
+	@Autowired
+	MemberModifyService memberModifyService;
 	
 	@RequestMapping("agree")
 	public String agree() {
@@ -46,5 +49,16 @@ public class MemberController {
 							 Model model) {
 		memberInfoService.memberInfo(membId, model);
 		return "member/memberInfo";
+	}
+	@RequestMapping("memberModify")
+	public String memberModify(@RequestParam(value="membId") String membId,
+			 Model model) {
+		memberInfoService.memberInfo(membId, model);
+		return "member/memberModify";
+	}
+	@RequestMapping("memberModifyOk")
+	public String memberModifyOk(MemberCommand memberCommand) {
+		memberModifyService.memberUpdate(memberCommand);
+		return "redirect:memberInfo?membId="+ memberCommand.getMembId();
 	}
 }

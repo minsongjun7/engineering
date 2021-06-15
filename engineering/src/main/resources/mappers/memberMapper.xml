@@ -22,4 +22,10 @@
 	from member
 	where memb_id = #{membId}
 </select>
+<update id="memberUpdate" parameterType="model.MemberDTO">
+	update member
+	set POST_NUMBER = #{postNumber}, MEMB_ADDR = #{membAddr}, DETAIL_ADDR = #{detailAddr}, MEMB_EMAIL = #{membEmail},
+		MEMB_CONFIRM = #{membConfirm}, MEMB_PHONE_NUMBER = #{membPhoneNumber}
+	where MEMB_ID = #{membId}
+</update>
 </mapper>

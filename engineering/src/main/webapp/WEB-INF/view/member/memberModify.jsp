@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,27 +57,29 @@
 </script>
 </head>
 <body>
-회원가입 페이지입니다.<br/>
-<form action="memberJoin" method="post">
+회원수정 페이지입니다.<br/>
+<form action="memberModifyOk" method="post" name="frm">
+<input type="hidden" name="membId" value="${dto.membId}">
 	<table border="1" align="center">
-		<tr><td>아이디</td><td><input type="text" name="membId"/></td></tr>
-		<tr><td>비밀번호</td><td><input type="password" name="membPw"/></td></tr>
-		<tr><td>비밀번호확인</td><td><input type="password" name="membPwCon"/></td></tr>
-		<tr><td>이름</td><td><input type="text" name="membName"/></td></tr>
-		<tr><td>우편번호</td><td><input type="text" name="postNumber" id="sample4_postcode"/></td></tr>
-		<tr><td>주소</td><td><input type="text" name="membAddr" id="sample4_roadAddress"/><a href="javascript:sample4_execDaumPostcode()">주소검색</a></td></tr>
-		<tr><td>상세주소</td><td><input type="text" name="detailAddr"/></td></tr>
-		<tr><td>연락처</td><td><input type="text" name="membPhoneNumber" placeholder="010-1234-5678"/></td></tr>
-		<tr><td>생년월일</td><td><input type="date" name="membBirth" placeholder="yyyy-MM-dd"/></td></tr>
-		<tr><td>성별</td><td><input type="radio" name="membGender" value="M"/>남자
-							<input type="radio" name="membGender" value="F"/>여자</td></tr>
-		<tr><td>이메일</td><td><input type="email" name="membEmail"/></td></tr>
-		<tr><td>이메일수신여부</td><td><input type="radio" name="membConfirm" value="Y"/>예
-								  <input type="radio" name="membConfirm" value="N"/>아니오</td></tr>
+		<tr><td>아이디</td><td>${dto.membId}</td></tr>
+		<tr><td>이름</td><td>${dto.membName}</td></tr>
+		<tr><td>우편번호</td><td><input type="text" name="postNumber" id="sample4_postcode" value="${dto.postNumber}"/></td></tr>
+		<tr><td>주소</td><td><input type="text" name="membAddr" id="sample4_roadAddress" value="${dto.membAddr}"/><a href="javascript:sample4_execDaumPostcode()">주소검색</a></td></tr>
+		<tr><td>상세주소</td><td><input type="text" name="detailAddr" value="${dto.detailAddr}"/></td></tr>
+		<tr><td>연락처</td><td><input type="text" name="membPhoneNumber" placeholder="010-1234-5678" value="${dto.membPhoneNumber}"/></td></tr>
+		<tr><td>생년월일</td><td><fmt:formatDate value="${dto.membBirth}" type="date" pattern="yyyy-MM-dd"/></td></tr>
+		<tr><td>성별</td>
+			<td><c:if test="${dto.membGender.trim() == 'M'}">남자</c:if>
+				<c:if test="${dto.membGender.trim() == 'F'}">여자</c:if>
+			</td></tr>
+		<tr><td>이메일</td><td><input type="email" name="membEmail" value="${dto.membEmail}"/></td></tr>
+		<tr><td>이메일수신여부</td>
+			<td><input type="radio" name="membConfirm" value="Y" <c:if test="${dto.membConfirm == 'Y'}">checked</c:if>/>예
+				<input type="radio" name="membConfirm" value="N" <c:if test="${dto.membConfirm == 'N'}">checked</c:if>/>아니오
+			</td></tr>
 		<tr><td colspan="2" align="center">
-			<input type="submit" value="회원가입"/>
-			<input type="reset" value="취소"/>
-			<input type="button" value="가입 안 함" onclick="javascript:location.href='../main'"/></td></tr>
+			<input type="submit" value="회원수정"/>
+			<input type="button" value="수정 안 함" onclick="javascript:history.back();"/></td></tr>
 	</table>
 </form>
 </body>

@@ -25,4 +25,8 @@ public class MemberRepository {
 		statement = namespace + ".memberInfo";
 		return sqlSession.selectOne(statement, membId);
 	}
+	public void memberUpdate(MemberDTO dto) {
+		statement = namespace + ".memberUpdate";
+		sqlSession.update(statement,dto);
+	}
 }
