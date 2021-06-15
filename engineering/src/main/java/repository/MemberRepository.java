@@ -19,7 +19,7 @@ public class MemberRepository {
 	}
 	public void memberInsert(MemberDTO dto) {
 		statement = namespace + ".memberInsert";
-		sqlSession.insert(statement,dto);
+		sqlSession.insert(statement, dto);
 	}
 	public MemberDTO memberInfo(String membId) {
 		statement = namespace + ".memberInfo";
@@ -27,6 +27,10 @@ public class MemberRepository {
 	}
 	public void memberUpdate(MemberDTO dto) {
 		statement = namespace + ".memberUpdate";
-		sqlSession.update(statement,dto);
+		sqlSession.update(statement, dto);
+	}
+	public void memberDelete(String membId) {
+		statement = namespace + ".memberDelete";
+		sqlSession.delete(statement, membId);
 	}
 }

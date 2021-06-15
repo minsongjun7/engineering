@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.MemberCommand;
+import service.member.MemberDeleteService;
 import service.member.MemberInfoService;
 import service.member.MemberJoinService;
 import service.member.MemberListService;
@@ -24,6 +25,8 @@ public class MemberController {
 	MemberInfoService memberInfoService;
 	@Autowired
 	MemberModifyService memberModifyService;
+	@Autowired
+	MemberDeleteService memberDeleteService;
 	
 	@RequestMapping("agree")
 	public String agree() {
@@ -60,5 +63,11 @@ public class MemberController {
 	public String memberModifyOk(MemberCommand memberCommand) {
 		memberModifyService.memberUpdate(memberCommand);
 		return "redirect:memberInfo?membId="+ memberCommand.getMembId();
+	}
+	@RequestMapping("memberDelete")
+	public String memberDelete(@RequestParam(value="membId") String membId) {
+		memberDeleteService.memberDelete(membId);
+		System.out.println(membId);
+		return "redirect:memberList";
 	}
 }

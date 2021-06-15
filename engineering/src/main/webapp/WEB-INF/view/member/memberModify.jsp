@@ -74,12 +74,14 @@
 			</td></tr>
 		<tr><td>이메일</td><td><input type="email" name="membEmail" value="${dto.membEmail}"/></td></tr>
 		<tr><td>이메일수신여부</td>
-			<td><input type="radio" name="membConfirm" value="Y" <c:if test="${dto.membConfirm == 'Y'}">checked</c:if>/>예
-				<input type="radio" name="membConfirm" value="N" <c:if test="${dto.membConfirm == 'N'}">checked</c:if>/>아니오
+			<td><input type="radio" name="membConfirm" value="Y" <c:if test="${dto.membConfirm.trim() == 'Y'}">checked</c:if>/>예
+				<input type="radio" name="membConfirm" value="N" <c:if test="${dto.membConfirm.trim() == 'N'}">checked</c:if>/>아니오
 			</td></tr>
 		<tr><td colspan="2" align="center">
-			<input type="submit" value="회원수정"/>
-			<input type="button" value="수정 안 함" onclick="javascript:history.back();"/></td></tr>
+				<input type="submit" value="회원수정"/>
+				<input type="button" value="수정 안 함" onclick="javascript:history.back();"/>
+				<input type="button" value="강퇴" onclick="javascript:location.href='memberDelete?membId=${dto.membId}'"/>
+			</td></tr>
 	</table>
 </form>
 </body>

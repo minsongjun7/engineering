@@ -28,4 +28,8 @@
 		MEMB_CONFIRM = #{membConfirm}, MEMB_PHONE_NUMBER = #{membPhoneNumber}
 	where MEMB_ID = #{membId}
 </update>
+<delete id="memberDelete" parameterType="string">
+	delete from member
+	where MEMB_ID = #{membId}
+</delete>
 </mapper>
