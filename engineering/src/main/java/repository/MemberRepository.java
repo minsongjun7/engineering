@@ -21,4 +21,8 @@ public class MemberRepository {
 		statement = namespace + ".memberInsert";
 		sqlSession.insert(statement,dto);
 	}
+	public MemberDTO memberInfo(String membId) {
+		statement = namespace + ".memberInfo";
+		return sqlSession.selectOne(statement, membId);
+	}
 }
