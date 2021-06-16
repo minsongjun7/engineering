@@ -147,6 +147,7 @@ public class MemberController {
 		if(bCryptPasswordEncoder.matches(membPw, pw)) {
 			if(newPw.equals(newPwCon)) {
 				//비밀번호 변경
+				newPw = bCryptPasswordEncoder.encode(newPw);
 				memberPwChangeService.pwOk(userId, newPw);
 				return "redirect:/";
 			}
