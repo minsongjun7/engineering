@@ -18,7 +18,7 @@
 이메일 수신 여부 : ${dto.membConfirm}<br/>
 우편번호 : ${dto.postNumber}<br/>
 주소 : ${dto.membAddr} ${dto.detailAddr}<br/>
-등록일 : <fmt:formatDate value="${dto.membJoinDate}" type="date"
+가입일 : <fmt:formatDate value="${dto.membJoinDate}" type="date"
 				pattern="yyyy-MM-dd HH:mm:ss"/><br/>
 <a href="memberModify?membId=${dto.membId}">수정</a>
 </body>
