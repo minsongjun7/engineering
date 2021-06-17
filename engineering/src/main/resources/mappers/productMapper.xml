@@ -10,6 +10,6 @@
 </select>
 <insert id="prodInsert" parameterType="model.ProductDTO">
 	insert into product(PROD_NO, CAT_NUM, PROD_NAME, PROD_PRICE, PROD_INFO, PROD_IMAGE, EMP_NO)
-	value(#{prodNo},#{catNum},#{prodName},#{prodPrice},#{prodInfo},#{prodImage},#{empNo})
+	values(#{prodNo},#{catNum},#{prodName},#{prodPrice},#{prodInfo},#{prodImage},#{empNo})
 </insert>
 </mapper>
