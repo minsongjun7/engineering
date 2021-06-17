@@ -6,13 +6,18 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import command.ProductCommand;
 import model.AuthInfo;
 import model.ProductDTO;
+import repository.ProductRepository;
 
 public class ProductJoinService {
+	@Autowired
+	ProductRepository productRepository;
+	
 	public void prodJoin(ProductCommand productCommand, HttpSession session) {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		String empNo = authInfo.getGrade();
@@ -48,5 +53,6 @@ public class ProductJoinService {
 			}
 		}
 		dto.setProdImage(prodImage);
+		productRepository.prodInsert(dto);
 	}
 }
