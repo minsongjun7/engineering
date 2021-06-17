@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import model.ProductDTO;
+import model.CategoryDTO;
 
 public class ProductRepository {
 	@Autowired
@@ -17,7 +17,7 @@ public class ProductRepository {
 		statement = namespace + ".autoNum";
 		return sqlSession.selectOne(statement);
 	}
-	public List<ProductDTO> catList() {
+	public List<CategoryDTO> catList() {
 		statement = namespace + ".catList";
 		return sqlSession.selectList(statement);
 	}

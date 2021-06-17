@@ -7,4 +7,5 @@
 	<bean class="controller.prod.ProdController"/>
 	<bean id="productAutoNumService" class="service.product.ProductAutoNumService"/>
 	<bean id="productRepository" class="repository.ProductRepository"/>
+	<bean id="productJoinService" class="service.product.ProductJoinService"/>
 </beans>
