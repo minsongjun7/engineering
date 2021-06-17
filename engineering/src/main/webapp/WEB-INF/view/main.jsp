@@ -39,6 +39,7 @@
 
 <!-- 일반직원 로그인 -->
 	<a href="emp/empMyPage">직원 마이페이지</a>
+<a href="prod/prodList">상품정보 리스트</a>
 </c:if>
 <c:if test="${authInfo.grade == 1}">
 <!-- 회원 로그인 -->
