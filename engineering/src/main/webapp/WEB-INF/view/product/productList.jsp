@@ -12,7 +12,7 @@
 <table border = 1>
 	<tr><td>이미지</td><td>상품번호</td><td>상품명</td><td>가격</td></tr>
 	<c:forEach items="${prodList}" var="dto">
-		<tr><td><img src='product/upload/${dto.prodImage.split(",")[0]}'/></td>
+		<tr><td><img width="50" src='../product/upload/${dto.prodImage.split(",")[0]}'/></td>
 			<td><a href="prodUpdate?prodNo=${dto.prodNo}">${dto.prodNo}</a></td>
 			<td>${dto.prodName}</td><td>${dto.prodPrice}</td></tr>
 	</c:forEach>
