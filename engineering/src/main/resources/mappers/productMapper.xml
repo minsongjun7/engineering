@@ -29,4 +29,34 @@
 	delete from product
 	where PROD_NO = #{prodNo}
 </delete>
+<update id="cartInsert" parameterType="model.CartDTO">
+	merge into cart c
+	using (select PROD_NO from product where PROD_NO = #{prodNo}) p
+	on (c.PROD_NO = p.PROD_NO and MEMB_ID = #{membId})
+	When MATCHED THEN
+	update set CART_QTY = CART_QTY + #{cartQty}, CART_PRICE = CART_PRICE + #{cartPrice}
+	When not MATCHED THEN
+	insert (MEMB_ID, PROD_NO, CAT_NUM, CART_QTY, CART_PRICE)
+	values (#{membId},#{prodNo},#{catNum},#{cartQty},#{cartPrice})
+</update>
+<select id="membCart" parameterType="string" resultType="string">
+	select PROD_NO from cart where MEMB_ID = #{membId}
+</select>
+<resultMap type="model.ProductCartDTO" id="productCartMap">
+	<association property="productDTO" javaType="model.ProductDTO">
+		<result column="prod_name" jdbcType="varchar" property="prodName"/>
+		<result column="prod_price" jdbcType="varchar" property="prodPrice"/>
+	</association>
+	<association property="cartDTO" javaType="model.CartDTO">
+		<id column="memb_id" jdbcType="varchar" property="membId"/>
+		<id column="prod_no" jdbcType="varchar" property="prodNo"/>
+		<result column="cart_qty" jdbcType="varchar" property="cartQty"/>
+		<result column="cart_price" jdbcType="varchar" property="cartPrice"/>
+	</association>
+</resultMap>
+<select id="cartList" parameterType="model.CartDTO" resultMap="productCartMap">
+	select PROD_NAME, PROD_PRICE, MEMB_ID, c.PROD_NO, CART_QTY, CART_PRICE
+	from product p, cart c
+	where p.PROD_NO = c.PROD_NO and c.MEMB_ID = #{membId} AND c.PROD_NO = #{prodNo}
+</select>
 </mapper>

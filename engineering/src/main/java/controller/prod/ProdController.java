@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.ProductCommand;
+import service.product.CartAddService;
+import service.product.CartListService;
 import service.product.ProductAutoNumService;
 import service.product.ProductDeleteService;
 import service.product.ProductInfoService;
@@ -32,6 +34,10 @@ public class ProdController {
 	ProductModifyService productModifyService;
 	@Autowired
 	ProductDeleteService productDeleteService;
+	@Autowired
+	CartAddService cartAddService;
+	@Autowired
+	CartListService cartListService;
 	
 	@RequestMapping("prodList")
 	public String prodList(Model model) {
@@ -62,5 +68,22 @@ public class ProdController {
 	public String prodDel(@RequestParam(value="prodNo") String prodNo, HttpSession session) {
 		productDeleteService.prodDel(prodNo, session);
 		return "redirect:prodList";
+	}
+	@RequestMapping("prodInfo")
+	public String prodInfo(@RequestParam(value="prodNo") String prodNo, Model model) {
+		productInfoService.prodInfo(model, prodNo);
+		return "product/prodInfo";
+	}
+	@RequestMapping("cartAdd")
+	public String cartAdd(@RequestParam(value="prodNo") String prodNo, @RequestParam(value="cartQty") String cartQty,
+						  @RequestParam(value="prodPrice") String prodPrice, @RequestParam(value="catNum") String catNum,
+						  Model model, HttpSession session) {
+		cartAddService.cartAdd(prodNo, cartQty, prodPrice, catNum, session);
+		return "redirect:cartList";
+	}
+	@RequestMapping("cartList")
+	public String cartList(Model model, HttpSession session) {
+		cartListService.cartList(model, session);
+		return "product/cartList";
 	}
 }
