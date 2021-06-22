@@ -56,4 +56,8 @@ public class ProductRepository {
 		statement = namespace + ".cartList";
 		return sqlSession.selectOne(statement, dto);
 	}
+	public void cartQtyDown(CartDTO dto) {
+		statement = namespace + ".cartQtyDown";
+		sqlSession.update(statement, dto);
+	}
 }

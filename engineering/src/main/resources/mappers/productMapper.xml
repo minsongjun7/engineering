@@ -42,16 +42,17 @@
 <select id="membCart" parameterType="string" resultType="string">
 	select PROD_NO from cart where MEMB_ID = #{membId}
 </select>
+<!-- selectList를 사용할 수 없다. selectOne -->
 <resultMap type="model.ProductCartDTO" id="productCartMap">
 	<association property="productDTO" javaType="model.ProductDTO">
-		<result column="prod_name" jdbcType="varchar" property="prodName"/>
-		<result column="prod_price" jdbcType="varchar" property="prodPrice"/>
+		<result column="prod_name" jdbcType="VARCHAR" property="prodName"/>
+		<result column="prod_price" jdbcType="VARCHAR" property="prodPrice"/>
 	</association>
 	<association property="cartDTO" javaType="model.CartDTO">
-		<id column="memb_id" jdbcType="varchar" property="membId"/>
-		<id column="prod_no" jdbcType="varchar" property="prodNo"/>
-		<result column="cart_qty" jdbcType="varchar" property="cartQty"/>
-		<result column="cart_price" jdbcType="varchar" property="cartPrice"/>
+		<id column="memb_id" jdbcType="VARCHAR" property="membId"/>
+		<id column="prod_no" jdbcType="VARCHAR" property="prodNo"/>
+		<result column="cart_qty" jdbcType="VARCHAR" property="cartQty"/>
+		<result column="cart_price" jdbcType="VARCHAR" property="cartPrice"/>
 	</association>
 </resultMap>
 <select id="cartList" parameterType="model.CartDTO" resultMap="productCartMap">
@@ -59,4 +60,9 @@
 	from product p, cart c
 	where p.PROD_NO = c.PROD_NO and c.MEMB_ID = #{membId} AND c.PROD_NO = #{prodNo}
 </select>
+<update id="cartQtyDown" parameterType="model.ProductDTO">
+	update cart
+	set cart_Qty = cart_qty - 1, cart_price = cart_price = #{cartPrice}
+	where memb_id = #{memb_id} and prod_no = #{prodNo}
+</update>
 </mapper>

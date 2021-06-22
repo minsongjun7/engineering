@@ -13,24 +13,21 @@ import model.CartDTO;
 import model.ProductCartDTO;
 import repository.ProductRepository;
 
-public class CartListService {
+public class ProdBuyService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public void cartList(Model model, HttpSession session) {
+	public void prodBuy(HttpSession session, String [] prodCk, Model model) {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		String membId = authInfo.getUserId();
-		//현 접속자의 prod_no 리스트만 가져옴
-		List<String> list = productRepository.membCart(membId);
-		List<ProductCartDTO> dtos = new ArrayList<ProductCartDTO>();
-		for(String prodNo : list) {
+		List<ProductCartDTO> list = new ArrayList<ProductCartDTO>();
+		for(String prodNo : prodCk) {
 			CartDTO dto = new CartDTO();
-			dto.setProdNo(prodNo);
 			dto.setMembId(membId);
-			//현 사용자의 상품번호 하나에 해당되는 데이터를 하나씩 받아와서 list에 저장
-			ProductCartDTO productCartDTO = productRepository.cartList(dto);
-			dtos.add(productCartDTO);
+			dto.setProdNo(prodNo);
+			ProductCartDTO dto1 = productRepository.cartList(dto);
+			list.add(dto1);
 		}
-		model.addAttribute("list", dtos);
+		model.addAttribute("list", list);
 	}
 }
