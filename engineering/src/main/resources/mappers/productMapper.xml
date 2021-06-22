@@ -62,7 +62,7 @@
 </select>
 <update id="cartQtyDown" parameterType="model.ProductDTO">
 	update cart
-	set cart_Qty = cart_qty - 1, cart_price = cart_price = #{cartPrice}
+	set cart_qty = cart_qty - 1, cart_price = cart_price - #{cartPrice}
 	where memb_id = #{membId} and prod_no = #{prodNo}
 </update>
 </mapper>
