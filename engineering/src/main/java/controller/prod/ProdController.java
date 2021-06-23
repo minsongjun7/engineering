@@ -116,12 +116,8 @@ public class ProdController {
 	}
 	@RequestMapping("goodsOrder")
 	public String goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
-		goodsOrderService.goodsOrder(goodsOrderCommand, session);
-		return "redirect:payment";
-	}
-	@RequestMapping("payment")
-	public String payment() {
-		return "product/payment";
+		String purNo = goodsOrderService.goodsOrder(goodsOrderCommand, session);
+		return "redirect:paymentOk?purNo="+purNo+"&payPrice="+goodsOrderCommand.getPurTotal();
 	}
 	@RequestMapping("purCon")
 	public String purCon(HttpSession session, Model model) {

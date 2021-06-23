@@ -18,7 +18,7 @@ public class GoodsOrderService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public void goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
+	public String goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		String membId = authInfo.getUserId();
 		PurchaseDTO dto = new PurchaseDTO();
@@ -50,5 +50,6 @@ public class GoodsOrderService {
 			productRepository.purListInsert(d);
 			productRepository.cartProdDel(d);
 		}
+		return purNo;
 	}
 }

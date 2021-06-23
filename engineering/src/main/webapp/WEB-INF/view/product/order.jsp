@@ -37,7 +37,7 @@
 	<tr><th>받는 사람</th><td><input type="text" name="purReceiver"/></td></tr>
 	<tr><th>연락처</th><td><input type="text" name="purReceiverPhoneNumber"/></td></tr>
 	<tr><th>주문 문자</th><td><input type="text" name="purMsg"/></td></tr>
-	<tr><th colspan="2"><input type="submit" value="결제하기"/></th></tr>
+	<tr><th colspan="2"><input type="submit" value="주문하기"/></th></tr>
 </table>
 </form>
 </body>

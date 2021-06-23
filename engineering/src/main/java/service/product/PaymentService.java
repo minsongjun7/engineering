@@ -18,7 +18,6 @@ public class PaymentService {
 		PaymentDTO dto = new PaymentDTO();
 		dto.setPayAccountNo(payAccountNo);
 		dto.setPayCardBank(payCardBank);
-		dto.setPayDate(payDate);
 		dto.setPayMethod("카드");
 		dto.setPayPrice(payPrice);
 		dto.setPurNo(purNo);

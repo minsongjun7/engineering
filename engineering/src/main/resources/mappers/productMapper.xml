@@ -67,7 +67,7 @@
 </update>
 <insert id="purInsert" parameterType="model.PurchaseDTO">
 	insert into purchase(pur_no, pur_date, pur_total, pur_addr, pur_receiver, pur_receiver_phone_number, pur_msg, memb_id)
-	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{dto},#{purMsg},#{membId})
+	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{purReceiverPhoneNumber},#{purMsg},#{membId})
 </insert>
 <insert id="purListInsert">
 	insert into purchase_list(pur_no, prod_no, cat_num, purli_qty, purli_price)
@@ -87,4 +87,13 @@
 	and pu.pur_no = pa.pur_no(+)
 	and pu.memb_id = #{membId}
 </select>
+<sql id="payNo">
+	select to_char(sysdate, 'yyyymmdd') || nv12(max(pay_no), substr(max(pay_no),-6), 100000) + 1
+	from payment
+	where to_char(pay_date,'yyyymmdd') = to_char(sysdate, 'yyyymmdd')
+</sql>
+<insert id="payInsert" parameterType="model.PaymentDTO">
+	insert into payment(pay_no, pur_no, pay_method, pay_account_no, pay_price, pay_date, pay_card_bank)
+	values((<include refid="payNo"/>),#{purNo},#{payMethod},#{payAccountNo},#{payPrice},sysdate,#{payCardBank})
+</insert>
 </mapper>
