@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import command.GoodsOrderCommand;
 import command.ProductCommand;
 import service.product.CartAddService;
 import service.product.CartListService;
 import service.product.CartQtyDownService;
+import service.product.GoodsOrderService;
 import service.product.ProdBuyService;
 import service.product.ProductAutoNumService;
 import service.product.ProductDeleteService;
@@ -44,6 +46,8 @@ public class ProdController {
 	CartQtyDownService cartQtyDownService;
 	@Autowired
 	ProdBuyService prodBuyService;
+	@Autowired
+	GoodsOrderService goodsOrderService;
 	
 	@RequestMapping("prodList")
 	public String prodList(Model model) {
@@ -102,5 +106,10 @@ public class ProdController {
 	public String prodBuy(@RequestParam(value="prodCk") String [] prodCk, Model model, HttpSession session) {
 		prodBuyService.prodBuy(session, prodCk, model);
 		return "product/order";
+	}
+	@RequestMapping("goodsOrder")
+	public String goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
+		goodsOrderService.goodsOrder(goodsOrderCommand, session);
+		return "redirect:";
 	}
 }

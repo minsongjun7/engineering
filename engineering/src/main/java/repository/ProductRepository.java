@@ -9,6 +9,7 @@ import model.CartDTO;
 import model.CategoryDTO;
 import model.ProductCartDTO;
 import model.ProductDTO;
+import model.PurchaseDTO;
 
 public class ProductRepository {
 	@Autowired
@@ -59,5 +60,13 @@ public class ProductRepository {
 	public void cartQtyDown(CartDTO dto) {
 		statement = namespace + ".cartQtyDown";
 		sqlSession.update(statement, dto);
+	}
+	public void purInsert(PurchaseDTO dto) {
+		statement = namespace + ".purInsert";
+		sqlSession.insert(statement, dto);
+	}
+	public void purListInsert(CartDTO dto) {
+		statement = namespace + ".purListInsert";
+		sqlSession.insert(statement, dto);
 	}
 }

@@ -65,4 +65,8 @@
 	set cart_qty = cart_qty - 1, cart_price = cart_price - #{cartPrice}
 	where memb_id = #{membId} and prod_no = #{prodNo}
 </update>
+<insert id="purInsert" parameterType="model.PurchaseDTO">
+	insert into purchase(pur_no, pur_date, pur_total, pur_addr, pur_receiver, pur_receiver_phone_number, pur_msg, memb_id)
+	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{purReceiverPhoneNumber},#{purMsg},#{membId})
+</insert>
 </mapper>
