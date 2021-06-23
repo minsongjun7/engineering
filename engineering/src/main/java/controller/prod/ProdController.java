@@ -1,5 +1,6 @@
 package controller.prod;
 
+import javax.annotation.RegEx;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import service.product.ProductInfoService;
 import service.product.ProductJoinService;
 import service.product.ProductListService;
 import service.product.ProductModifyService;
+import service.product.PurchaseListService;
 
 @Controller
 @RequestMapping("prod")
@@ -48,6 +50,8 @@ public class ProdController {
 	ProdBuyService prodBuyService;
 	@Autowired
 	GoodsOrderService goodsOrderService;
+	@Autowired
+	PurchaseListService purchaseListService;
 	
 	@RequestMapping("prodList")
 	public String prodList(Model model) {
@@ -110,6 +114,19 @@ public class ProdController {
 	@RequestMapping("goodsOrder")
 	public String goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
 		goodsOrderService.goodsOrder(goodsOrderCommand, session);
-		return "redirect:";
+		return "redirect:payment";
+	}
+	@RequestMapping("payment")
+	public String payment() {
+		return "product/payment";
+	}
+	@RequestMapping("purCon")
+	public String purCon(HttpSession session, Model model) {
+		purchaseListService.purchaseList(session, model);
+		return "product/purCon";
+	}
+	@RequestMapping("paymentOk")
+	public String paymentOk() {
+		
 	}
 }

@@ -67,7 +67,7 @@
 </update>
 <insert id="purInsert" parameterType="model.PurchaseDTO">
 	insert into purchase(pur_no, pur_date, pur_total, pur_addr, pur_receiver, pur_receiver_phone_number, pur_msg, memb_id)
-	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{purReceiverPhoneNumber},#{purMsg},#{membId})
+	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{dto},#{purMsg},#{membId})
 </insert>
 <insert id="purListInsert">
 	insert into purchase_list(pur_no, prod_no, cat_num, purli_qty, purli_price)
@@ -75,4 +75,16 @@
 	from cart
 	where memb_id = #{membId} and prod_no = #{prodNo}
 </insert>
+<delete id="cartProdDel" parameterType="model.CartDTO">
+	delete from cart
+	where memb_id = #{membId} and prod_no = #{prodNo}
+</delete>
+<select id="purList" parameterType="string" resultType="model.PurchaseListDTO">
+	select pr.prod_no prodNo, prod_name prodName, prod_image prodImage, pu.pur_no purNo, pur_date purDate, pur_total purTotal, pay_no payNo
+	from product pr, purchase_list pl, purchase pu, payment pa
+	where pr.prod_no = pl.prod_no
+	and pl.pur_no = pu.pur_no
+	and pu.pur_no = pa.pur_no(+)
+	and pu.memb_id = #{membId}
+</select>
 </mapper>

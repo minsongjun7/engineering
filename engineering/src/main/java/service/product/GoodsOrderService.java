@@ -25,12 +25,20 @@ public class GoodsOrderService {
 		dto.setMembId(membId);
 		dto.setPurAddr(goodsOrderCommand.getPurAddr());
 		dto.setPurMsg(goodsOrderCommand.getPurMsg());
+		dto.setPurReceiver(goodsOrderCommand.getPurReceiver());
 		dto.setPurReceiverPhoneNumber(goodsOrderCommand.getPurReceiverPhoneNumber());
 		dto.setPurTotal(goodsOrderCommand.getPurTotal());
 		//purNo : 구매번호를 날짜로 사용
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 		String purNo = df.format(new Date());
 		dto.setPurNo(purNo);
+		System.out.println(dto.getMembId());
+		System.out.println(dto.getPurAddr());
+		System.out.println(dto.getPurMsg());
+		System.out.println(dto.getPurNo());
+		System.out.println(dto.getPurReceiver());
+		System.out.println(dto.getPurReceiverPhoneNumber());
+		System.out.println(dto.getPurTotal());
 		productRepository.purInsert(dto);
 		String [] prodNums = goodsOrderCommand.getProdNums().split(",");
 		for(String prodNum : prodNums) {
@@ -40,6 +48,7 @@ public class GoodsOrderService {
 			d.setMembId(membId);
 			d.setProdNo(prodNum);
 			productRepository.purListInsert(d);
+			productRepository.cartProdDel(d);
 		}
 	}
 }

@@ -17,4 +17,5 @@
 	<bean id="cartQtyDownService" class="service.product.CartQtyDownService"/>
 	<bean id="prodBuyService" class="service.product.ProdBuyService"/>
 	<bean id="goodsOrderService" class="service.product.GoodsOrderService"/>
+	<bean id="purchaseListService" class="service.product.PurchaseListService"/>
 </beans>
