@@ -69,4 +69,7 @@
 	insert into purchase(pur_no, pur_date, pur_total, pur_addr, pur_receiver, pur_receiver_phone_number, pur_msg, memb_id)
 	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{purReceiverPhoneNumber},#{purMsg},#{membId})
 </insert>
+<insert id="purListInsert">
+	
+</insert>
 </mapper>

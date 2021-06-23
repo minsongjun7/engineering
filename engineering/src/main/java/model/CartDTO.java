@@ -1,12 +1,19 @@
 package model;
 
 public class CartDTO {
+	String purNo;
 	String membId;
 	String prodNo;
 	String catNum;
 	String cartQty;
 	String cartPrice;
 	
+	public String getPurNo() {
+		return purNo;
+	}
+	public void setPurNo(String purNo) {
+		this.purNo = purNo;
+	}
 	public String getMembId() {
 		return membId;
 	}

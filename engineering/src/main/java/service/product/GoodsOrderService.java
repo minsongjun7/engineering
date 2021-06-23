@@ -36,6 +36,7 @@ public class GoodsOrderService {
 		for(String prodNum : prodNums) {
 			//카트에 있는 제품정보를 구매리스트에 복사하기 위해서
 			CartDTO d = new CartDTO();
+			d.setPurNo(purNo);
 			d.setMembId(membId);
 			d.setProdNo(prodNum);
 			productRepository.purListInsert(d);
