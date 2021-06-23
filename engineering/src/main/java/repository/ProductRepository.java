@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import model.CartDTO;
 import model.CategoryDTO;
+import model.PaymentDTO;
 import model.ProductCartDTO;
 import model.ProductDTO;
 import model.PurchaseDTO;
@@ -77,5 +78,9 @@ public class ProductRepository {
 	public List<PurchaseListDTO> purList(String membId) {
 		statement = namespace + ".purList";
 		return sqlSession.selectList(statement, membId);
+	}
+	public void payInsert(PaymentDTO dto) {
+		statement = namespace + ".payInsert";
+		sqlSession.insert(statement, dto);
 	}
 }

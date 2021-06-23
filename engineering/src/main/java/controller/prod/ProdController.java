@@ -16,6 +16,7 @@ import service.product.CartAddService;
 import service.product.CartListService;
 import service.product.CartQtyDownService;
 import service.product.GoodsOrderService;
+import service.product.PaymentService;
 import service.product.ProdBuyService;
 import service.product.ProductAutoNumService;
 import service.product.ProductDeleteService;
@@ -52,6 +53,8 @@ public class ProdController {
 	GoodsOrderService goodsOrderService;
 	@Autowired
 	PurchaseListService purchaseListService;
+	@Autowired
+	PaymentService paymentService;
 	
 	@RequestMapping("prodList")
 	public String prodList(Model model) {
@@ -126,7 +129,16 @@ public class ProdController {
 		return "product/purCon";
 	}
 	@RequestMapping("paymentOk")
-	public String paymentOk() {
-		
+	public String paymentOk(@RequestParam(value="purNo") String purNo, @RequestParam(value="payPrice") String payPrice, Model model) {
+		model.addAttribute("purNo", purNo);
+		model.addAttribute("payPrice", payPrice);
+		return "product/payment";
+	}
+	@RequestMapping("doPayment")
+	public String doPayment(@RequestParam(value="purNo") String purNo, @RequestParam(value="payPrice") String payPrice,
+							@RequestParam(value="payAccountNo") String payAccountNo, @RequestParam(value="payCardBank") String payCardBank,
+							HttpSession session) {
+		paymentService.payment(purNo, payPrice, payAccountNo, payCardBank, session);
+		return "redirect:purCon";
 	}
 }
