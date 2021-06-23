@@ -70,6 +70,9 @@
 	values(#{purNo},sysdate,#{purTotal},#{purAddr},#{purReceiver},#{purReceiverPhoneNumber},#{purMsg},#{membId})
 </insert>
 <insert id="purListInsert">
-	
+	insert into purchase_list(pur_no, prod_no, cat_num, purli_qty, purli_price)
+	select #{purNo}, prod_no, cat_num, cart_qty, cart_price
+	from cart
+	where memb_id = #{membId} and prod_no = #{prodNo}
 </insert>
 </mapper>
