@@ -14,8 +14,13 @@
 	<tr><td>${dto.purDate}/${dto.payNo}</td>
 		<td rowspan="2"><img width="100" src="../product/upload/${dto.prodImage.split(',')[0]}"/></td>
 		<td rowspan="2">${dto.prodName}/${dto.purNo}</td>
-		<td rowspan="2"><c:if test="${dto.payNo == null}"><a href="paymentOk?purNo=${dto.purNo}$payPrice=${dto.purTotal}">주문하기</a></c:if>
-						<c:if test="${dto.payNo != null }">주문완료<br/>리뷰쓰기</c:if>
+		<td rowspan="2"><c:if test="${dto.payNo == null}"><a href="paymentOk?purNo=${dto.purNo}&payPrice=${dto.purTotal}">주문하기</a></c:if>
+						<c:if test="${dto.payNo != null }">주문완료<br/>
+							<c:if test="${dto.reviewContent == null}">
+								<a href="goodsReview?purNo=${dto.purNo}&prodNo=${dto.prodNo}&prodName=${dto.prodName}">리뷰쓰기</a></c:if>
+							<c:if test="${dto.reviewContent != null}">
+								<a href="goodsReviewUpdate?purNo=${dto.purNo}&prodNo=${dto.prodNo}&prodName=${dto.prodName}">리뷰수정</a></c:if>
+						</c:if>
 		</td>
 	</tr>
 	<tr><td>결제금액 : ${dto.purTotal}</td></tr>

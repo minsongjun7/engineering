@@ -25,6 +25,9 @@ import service.product.ProductJoinService;
 import service.product.ProductListService;
 import service.product.ProductModifyService;
 import service.product.PurchaseListService;
+import service.product.ReviewModifyService;
+import service.product.ReviewUpdateService;
+import service.product.ReviewWriteService;
 
 @Controller
 @RequestMapping("prod")
@@ -55,6 +58,12 @@ public class ProdController {
 	PurchaseListService purchaseListService;
 	@Autowired
 	PaymentService paymentService;
+	@Autowired
+	ReviewWriteService reviewWriteService;
+	@Autowired
+	ReviewUpdateService reviewUpdateService;
+	@Autowired
+	ReviewModifyService reviewModifyService;
 	
 	@RequestMapping("prodList")
 	public String prodList(Model model) {
@@ -135,6 +144,34 @@ public class ProdController {
 							@RequestParam(value="payAccountNo") String payAccountNo, @RequestParam(value="payCardBank") String payCardBank,
 							HttpSession session) {
 		paymentService.payment(purNo, payPrice, payAccountNo, payCardBank, session);
+		return "redirect:purCon";
+	}
+	@RequestMapping("goodsReview")
+	public String goodsReview(@RequestParam(value="purNo") String purNo, @RequestParam(value="prodNo") String prodNo,
+							  @RequestParam(value="prodName") String prodName, Model model) {
+		model.addAttribute("purNo", purNo);
+		model.addAttribute("prodNo", prodNo);
+		model.addAttribute("prodName", prodName);
+		return "product/prodReview";
+	}
+	@RequestMapping("reviewOk")
+	public String reviewOk(@RequestParam(value="prodNo") String prodNo, @RequestParam(value="purNo") String purNo,
+						 @RequestParam(value="reviewContent") String reviewContent) {
+		reviewWriteService.reviewWrite(prodNo, purNo, reviewContent);
+		return "redirect:purCon";
+	}
+	//수정페이지 열기
+	@RequestMapping("goodsReviewUpdate")
+	public String goodsReviewUpdate(@RequestParam(value="prodNo") String prodNo, @RequestParam(value="purNo") String purNo,
+			 						@RequestParam(value="prodName") String prodName, Model model) {
+		reviewUpdateService.reviewUpdate(prodNo, purNo, prodName, model);
+		return "product/reviewUpdate";
+	}
+	//수정하기
+	@RequestMapping("goodsReviewUpdateOk")
+	public String goodsReviewUpdateOk(@RequestParam(value="prodNo") String prodNo, @RequestParam(value="purNo") String purNo,
+									@RequestParam(value="reviewContent") String reviewContent) {
+		reviewModifyService.reviewModify(prodNo, purNo, reviewContent);
 		return "redirect:purCon";
 	}
 }

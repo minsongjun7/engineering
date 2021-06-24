@@ -10,8 +10,10 @@ import model.CategoryDTO;
 import model.PaymentDTO;
 import model.ProductCartDTO;
 import model.ProductDTO;
+import model.ProductReviewDTO;
 import model.PurchaseDTO;
 import model.PurchaseListDTO;
+import model.ReviewDTO;
 
 public class ProductRepository {
 	@Autowired
@@ -82,5 +84,21 @@ public class ProductRepository {
 	public void payInsert(PaymentDTO dto) {
 		statement = namespace + ".payInsert";
 		sqlSession.insert(statement, dto);
+	}
+	public void reviewWrite(ReviewDTO dto) {
+		statement = namespace + ".reviewInsert";
+		sqlSession.insert(statement, dto);
+	}
+	public void reviewUpdate(ReviewDTO dto) {
+		statement = namespace + ".reviewUpdate";
+		sqlSession.update(statement, dto);
+	}
+	public ReviewDTO reviewSelect(ReviewDTO dto) {
+		statement = namespace + ".reviewSelect";
+		return sqlSession.selectOne(statement, dto);
+	}
+	public List<ProductReviewDTO> prodReview(String prodNo) {
+		statement = namespace + ".prodReview";
+		return sqlSession.selectList(statement, prodNo);
 	}
 }

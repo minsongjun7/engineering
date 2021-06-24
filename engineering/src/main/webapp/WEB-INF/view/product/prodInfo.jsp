@@ -2,6 +2,10 @@
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	pageContext.setAttribute("br", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,5 +46,14 @@
 			</c:forTokens>
 		</td></tr>
 </table>
+<c:forEach items="${list}" var="dto1">
+<table align="center">
+<tr><td>
+<p>
+${dto1.membId} / 구매일 : ${dto1.purDate} / 리뷰 등록일 : ${dto1.reviewDate}<br/>
+${fn:replace(dto1.reviewContent,br,"<br/>")}
+</p></td></tr>
+</table>
+</c:forEach>
 </body>
 </html>

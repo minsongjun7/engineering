@@ -19,4 +19,7 @@
 	<bean id="goodsOrderService" class="service.product.GoodsOrderService"/>
 	<bean id="purchaseListService" class="service.product.PurchaseListService"/>
 	<bean id="paymentService" class="service.product.PaymentService"/>
+	<bean id="reviewWriteService" class="service.product.ReviewWriteService"/>
+	<bean id="reviewUpdateService" class="service.product.ReviewUpdateService"/>
+	<bean id="reviewModifyService" class="service.product.ReviewModifyService"/>
 </beans>

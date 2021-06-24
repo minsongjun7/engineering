@@ -80,15 +80,18 @@
 	where memb_id = #{membId} and prod_no = #{prodNo}
 </delete>
 <select id="purList" parameterType="string" resultType="model.PurchaseListDTO">
-	select pr.prod_no prodNo, prod_name prodName, prod_image prodImage, pu.pur_no purNo, pur_date purDate, pur_total purTotal, pay_no payNo
-	from product pr, purchase_list pl, purchase pu, payment pa
+	select pr.prod_no prodNo, prod_name prodName, prod_image prodImage, pu.pur_no purNo, pur_date purDate, pur_total purTotal, pay_no payNo,
+		   review_content reviewContent
+	from product pr, purchase_list pl, purchase pu, payment pa, review r
 	where pr.prod_no = pl.prod_no
-	and pl.pur_no = pu.pur_no
-	and pu.pur_no = pa.pur_no(+)
-	and pu.memb_id = #{membId}
+		and pl.pur_no = pu.pur_no
+		and pu.pur_no = pa.pur_no(+)
+		and pl.pur_no = r.pur_no(+)
+		and pl.prod_no = r.prod_no(+)
+		and pu.memb_id = #{membId}
 </select>
 <sql id="payNo">
-	select to_char(sysdate, 'yyyymmdd') || nv12(max(pay_no), substr(max(pay_no),-6), 100000) + 1
+	select to_char(sysdate, 'yyyymmdd') || nvl2(max(pay_no), substr(max(pay_no),-6), 100000) + 1
 	from payment
 	where to_char(pay_date,'yyyymmdd') = to_char(sysdate, 'yyyymmdd')
 </sql>
@@ -96,4 +99,26 @@
 	insert into payment(pay_no, pur_no, pay_method, pay_account_no, pay_price, pay_date, pay_card_bank)
 	values((<include refid="payNo"/>),#{purNo},#{payMethod},#{payAccountNo},#{payPrice},sysdate,#{payCardBank})
 </insert>
+<insert id="reviewInsert" parameterType="model.ReviewDTO">
+	insert into review(pur_no, prod_no, review_date, review_content, cat_num)
+	values(#{purNo},#{prodNo},sysdate,#{reviewContent},(select cat_num from product where prod_no = #{prodNo}))
+</insert>
+<select id="reviewSelect" parameterType="model.ReviewDTO" resultType="model.ReviewDTO">
+	select pur_no purNo, prod_no prodNo, review_content reviewContent
+	from review
+	where pur_no = #{purNo} and prod_no = #{prodNo}
+</select>
+<update id="reviewUpdate">
+	update review
+	set review_content = #{reviewContent}
+	where prod_no = #{prodNo} and pur_no = #{purNo}
+</update>
+<select id="prodReview" parameterType="string" resultType="model.ProductReviewDTO">
+	select p.memb_id membId, pl.pur_no purNo, pl.prod_no prodNo, review_content reviewContent, review_date reviewDate, pur_date purDate
+	from purchase p, purchase_list pl, review r
+	where p.pur_no = pl.pur_no
+		and pl.prod_no = r.prod_no
+		and pl.pur_no = r.pur_no
+		and r.prod_no = #{prodNo}
+</select>
 </mapper>
